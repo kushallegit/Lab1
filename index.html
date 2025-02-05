@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - Unit Conversion</title>
+</head>
+<body>
+    
+    <script>
+        // Part 2: Functions to convert kg to lb and lb to kg
+
+        // Function to convert kg to lb
+        function convertKgToLb(kg) {
+            return kg / 0.45359237;
+        }
+
+        // Function to convert lb to kg
+        function convertLbToKg(lb) {
+            return lb * 0.45359237;
+        }
+
+        let userChoice;
+        let massValue;
+
+        // Main loop: The loop should stop once the user selects "3"
+        while (true) {
+            // Ask the user what action they want to take
+            userChoice = prompt("Input 1 for converting kg to lb, or input 2 for converting lb to kg, or input 3 to exit.");
+
+            // If the user chooses to convert mass (1 or 2)
+            if (userChoice === "1" || userChoice === "2") {
+                // Ask the user to input their numeric value for mass conversion
+                do {
+                    massValue = prompt("Please enter the mass value (number) you want to convert:");
+
+                    // Check if the input is a valid number (not NaN)
+                    if (isNaN(massValue) || massValue === "") {
+                        alert("Please enter a valid numeric value.");
+                    }
+                } while (isNaN(massValue) || massValue === "");
+
+                // Convert string to float
+                massValue = parseFloat(massValue);
+
+                // Part 3: Using switch statement to call the appropriate function
+                switch (userChoice) {
+                    case "1":
+                        // Case 1: Convert kg to lb
+                        let lbs = convertKgToLb(massValue);
+                        // Display the result
+                        document.write("<p>" + massValue + " kg is equal to " + lbs.toFixed(2) + " lbs.</p>");
+                        break;
+
+                    case "2":
+                        // Case 2: Convert lb to kg
+                        let kg = convertLbToKg(massValue);
+                        // Display the result
+                        document.write("<p>" + massValue + " lbs is equal to " + kg.toFixed(2) + " kg.</p>");
+                        break;
+                }
+
+                break; // End the loop after displaying the result
+            } else if (userChoice === "3") {
+                // When the user selects to exit
+                document.write("<p>Exiting the application. Thank you!</p>");
+                break;  // Exit the loop when the user chooses 3 
+            } else {
+                // If the user enters an invalid choice, ask them again
+                alert("Invalid choice! Please enter 1, 2, or 3.");
+            }
+        }
+    </script>
+</body>
+</html>
